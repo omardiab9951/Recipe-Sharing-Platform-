@@ -1,0 +1,8 @@
+CREATE TABLE categories (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL UNIQUE
+);
+
+
+ALTER TABLE recipes 
+ADD FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE SET NULL;
