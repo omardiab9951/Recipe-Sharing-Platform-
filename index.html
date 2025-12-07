@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RecipeApp - Home</title>
+    <link rel="stylesheet" href="Style.css">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="index.html" class="logo">RecipeApp</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="add-recipe.html">Add Recipe</a>
+                <a href="login.html">Login</a>
+                <a href="register.html" class="btn-primary">Register</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="controls">
+            <input type="text" class="search-bar" placeholder="Search for recipes (e.g., Pasta)...">
+            <select class="category-filter">
+                <option value="all">All Categories</option>
+                <option value="breakfast">Breakfast</option>
+                <option value="lunch">Lunch</option>
+                <option value="dinner">Dinner</option>
+                <option value="dessert">Dessert</option>
+            </select>
+        </section>
+
+        <section class="recipe-grid">
+            <a href="recipe-details.html" class="recipe-card">
+                <img src="https://placehold.co/600x400/ff6b6b/white?text=Pancakes" alt="Pancakes" class="card-img">
+                <div class="card-content">
+                    <span class="category-tag">Breakfast</span>
+                    <h3>Fluffy Pancakes</h3>
+                    <p>Delicious fluffy pancakes served with syrup and fresh berries.</p>
+                </div>
+            </a>
+
+            <a href="recipe-details.html" class="recipe-card">
+                <img src="https://placehold.co/600x400/333/white?text=Burger" alt="Burger" class="card-img">
+                <div class="card-content">
+                    <span class="category-tag">Lunch</span>
+                    <h3>Classic Burger</h3>
+                    <p>Juicy beef burger with cheddar cheese and fresh lettuce.</p>
+                </div>
+            </a>
+
+            <a href="recipe-details.html" class="recipe-card">
+                <img src="https://placehold.co/600x400/orange/white?text=Cake" alt="Cake" class="card-img">
+                <div class="card-content">
+                    <span class="category-tag">Dessert</span>
+                    <h3>Chocolate Lava Cake</h3>
+                    <p>Rich chocolate cake with a molten center.</p>
+                </div>
+            </a>
+        </section>
+    </main>
+
+</body>
+</html>
