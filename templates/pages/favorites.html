@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Favorites</title>
+  <link rel="stylesheet" href="/assets/css/f2-styles.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body class="page-home">
+  <?php include __DIR__ . '/../components/header.php'; ?>
+
+  <main class="container">
+    <h1>Favorites</h1>
+    <div class="recipe-grid">
+      <?php foreach ($favorites as $r): ?>
+        <?php include __DIR__ . '/../components/recipe-card.php'; ?>
+      <?php endforeach; ?>
+    </div>
+  </main>
+
+  <?php include __DIR__ . '/../components/footer.php'; ?>
+  <script type="module" src="/assets/js/main.js"></script>
+</body>
+</html>

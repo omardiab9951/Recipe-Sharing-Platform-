@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Recipe — {{title}}</title>
+  <link rel="stylesheet" href="/assets/css/f2-styles.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body class="page-recipe-detail">
+  <?php include __DIR__ . '/../components/header.php'; ?>
+
+  <main class="container">
+    <article class="recipe-detail-card">
+      <header class="detail-header">
+        <img class="recipe-img" src="<?= $recipe['image'] ?: '/assets/images/default-recipe.jpg' ?>" alt="<?= htmlspecialchars($recipe['title']) ?>">
+        <div class="detail-meta">
+          <h1><?= htmlspecialchars($recipe['title']) ?></h1>
+          <p class="meta-line">Category: <?= htmlspecialchars($recipe['category']) ?> • Posted by <?= htmlspecialchars($recipe['author_name']) ?></p>
+        </div>
+      </header>
+
+      <section class="ingredients">
+        <h2>Ingredients</h2>
+        <div class="content-block"><?= nl2br(htmlspecialchars($recipe['ingredients'])) ?></div>
+      </section>
+
+      <section class="instructions">
+        <h2>Instructions</h2>
+        <div class="content-block"><?= nl2br(htmlspecialchars($recipe['instructions'])) ?></div>
+      </section>
+
+      <section class="interactions">
+        <button class="favorite-btn" data-recipe-id="<?= $recipe['id'] ?>">❤ Favorite</button>
+      </section>
+
+      <section class="comments">
+        <h3>Comments</h3>
+        <div id="comments-list">
+          <?php foreach ($comments as $c): ?>
+            <?php include __DIR__ . '/../components/comment-item.php'; ?>
+          <?php endforeach; ?>
+        </div>
+
+        <?php if ($user): ?>
+          <?php include __DIR__ . '/../components/comment-form.php'; ?>
+        <?php else: ?>
+          <p><a href="/login.php">Log in</a> to post a comment.</p>
+        <?php endif; ?>
+      </section>
+    </article>
+  </main>
+
+  <?php include __DIR__ . '/../components/footer.php'; ?>
+  <script type="module" src="/assets/js/main.js"></script>
+</body>
+</html>

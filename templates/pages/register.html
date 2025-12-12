@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Register</title>
+  <link rel="stylesheet" href="/assets/css/f2-styles.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body class="page-register">
+  <?php include __DIR__ . '/../components/header.php'; ?>
+
+  <main class="container">
+    <h1>Create an Account</h1>
+    <form id="register-form" class="form-card" method="post" action="/api/auth/register.php">
+      <label>Name
+        <input name="name" type="text" required>
+        <div class="error-msg"></div>
+      </label>
+
+      <label>Email
+        <input name="email" type="email" required>
+        <div class="error-msg"></div>
+      </label>
+
+      <label>Password
+        <input name="password" type="password" required>
+        <div class="error-msg"></div>
+      </label>
+
+      <div class="form-actions">
+        <button type="submit" class="btn-primary">Register</button>
+      </div>
+    </form>
+  </main>
+
+  <?php include __DIR__ . '/../components/footer.php'; ?>
+  <script type="module" src="/assets/js/main.js"></script>
+</body>
+</html>

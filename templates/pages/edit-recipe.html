@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Edit Recipe</title>
+  <link rel="stylesheet" href="/assets/css/f2-styles.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body class="page-edit-recipe">
+  <?php include __DIR__ . '/../components/header.php'; ?>
+
+  <main class="container">
+    <h1>Edit Recipe</h1>
+    <form id="edit-recipe-form" class="form-card" method="post" enctype="multipart/form-data" action="/api/recipes/update-recipe.php">
+      <input type="hidden" name="id" value="<?= $recipe['id'] ?>">
+
+      <label>Title
+        <input name="title" type="text" maxlength="120" value="<?= htmlspecialchars($recipe['title']) ?>">
+        <div class="error-msg"></div>
+      </label>
+
+      <label>Category
+        <select name="category" required>
+          <option value="">Select category</option>
+          <option value="Breakfast" <?= $recipe['category'] === 'Breakfast' ? 'selected' : '' ?>>Breakfast</option>
+          <option value="Lunch" <?= $recipe['category'] === 'Lunch' ? 'selected' : '' ?>>Lunch</option>
+          <option value="Dinner" <?= $recipe['category'] === 'Dinner' ? 'selected' : '' ?>>Dinner</option>
+          <option value="Dessert" <?= $recipe['category'] === 'Dessert' ? 'selected' : '' ?>>Dessert</option>
+          <option value="Snack" <?= $recipe['category'] === 'Snack' ? 'selected' : '' ?>>Snack</option>
+        </select>
+        <div class="error-msg"></div>
+      </label>
+
+      <label>Ingredients
+        <textarea name="ingredients" rows="6"><?= htmlspecialchars($recipe['ingredients']) ?></textarea>
+        <div class="error-msg"></div>
+      </label>
+
+      <label>Instructions
+        <textarea name="steps" rows="8"><?= htmlspecialchars($recipe['instructions']) ?></textarea>
+        <div class="error-msg"></div>
+      </label>
+
+      <label class="file-label">Change Image
+        <input class="image-input" type="file" name="image" accept="image/*">
+        <img class="image-preview <?= $recipe['image'] ? '' : 'hidden' ?>" src="<?= $recipe['image'] ?: '' ?>" alt="preview">
+      </label>
+
+      <div class="form-actions">
+        <button type="submit" class="btn-primary">Save</button>
+      </div>
+    </form>
+  </main>
+
+  <?php include __DIR__ . '/../components/footer.php'; ?>
+
+  <script type="module" src="/assets/js/main.js"></script>
+</body>
+</html>

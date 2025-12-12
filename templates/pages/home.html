@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Home — Recipe Sharing</title>
+  <link rel="stylesheet" href="/assets/css/f2-styles.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body class="page-home">
+  <!-- header -->
+  <?php include __DIR__ . '/../components/header.php'; ?>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Discover & Share Delicious Recipes</h1>
+      <p>Search, filter and save your favorite recipes.</p>
+      <?php include __DIR__ . '/../components/search-bar.php'; ?>
+    </section>
+
+    <section class="browse">
+      <aside class="sidebar">
+        <?php include __DIR__ . '/../components/filter-sidebar.php'; ?>
+      </aside>
+
+      <section class="content">
+        <div class="recipe-grid" id="recipe-grid">
+          <!-- Recipe cards will be rendered server-side by F1 or by JS (F2 can fetch) -->
+          <?php /* Example card include:
+             include __DIR__ . '/../components/recipe-card.php';
+          */ ?>
+        </div>
+
+        <!-- pagination placeholder -->
+        <div class="pagination" role="navigation" aria-label="Pagination">
+          <!-- server-side render page numbers or F2 will handle -->
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <?php include __DIR__ . '/../components/footer.php'; ?>
+
+  <script type="module" src="/assets/js/main.js"></script>
+</body>
+</html>
