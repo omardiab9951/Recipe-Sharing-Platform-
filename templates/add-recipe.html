@@ -1,0 +1,164 @@
+<?php include 'includes/header.php'; ?>
+<link rel="stylesheet" href="assets/css/add-recipe.css">
+
+<div class="add-recipe-page">
+    
+    <div class="page-header">
+        <h1 class="page-title">🍳 Add New Recipe</h1>
+        <p class="page-subtitle">Share your delicious recipe with the community</p>
+    </div>
+    
+    <div class="recipe-form-container">
+        
+        <?php if (!empty($error)): ?>
+            <div class="error-message">
+                ⚠️ <?php echo htmlspecialchars($error); ?>
+            </div>
+        <?php endif; ?>
+        
+        <?php if (!empty($success)): ?>
+            <div class="success-message">
+                ✅ <?php echo htmlspecialchars($success); ?>
+            </div>
+        <?php endif; ?>
+        
+        <form method="POST" action="add-recipe.php" enctype="multipart/form-data">
+            
+            <!-- Basic Information -->
+            <div class="form-section">
+                <h2 class="section-title">Basic Information</h2>
+                
+                <div class="form-group">
+                    <label for="title" class="form-label">Recipe Title <span class="required">*</span></label>
+                    <input 
+                        type="text" 
+                        id="title" 
+                        name="title" 
+                        class="form-input"
+                        placeholder="e.g., Chocolate Chip Cookies"
+                        required
+                        value="<?php echo isset($_POST['title']) ? htmlspecialchars($_POST['title']) : ''; ?>"
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <label for="description" class="form-label">Short Description</label>
+                    <textarea 
+                        id="description" 
+                        name="description" 
+                        class="form-textarea"
+                        placeholder="Brief description of your recipe..."
+                    ><?php echo isset($_POST['description']) ? htmlspecialchars($_POST['description']) : ''; ?></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="category" class="form-label">Category <span class="required">*</span></label>
+                    <select id="category" name="category" class="form-select" required>
+                        <option value="">Select a category</option>
+                        <option value="Breakfast" <?php echo (isset($_POST['category']) && $_POST['category'] == 'Breakfast') ? 'selected' : ''; ?>>🥞 Breakfast</option>
+                        <option value="Lunch" <?php echo (isset($_POST['category']) && $_POST['category'] == 'Lunch') ? 'selected' : ''; ?>>🥗 Lunch</option>
+                        <option value="Dinner" <?php echo (isset($_POST['category']) && $_POST['category'] == 'Dinner') ? 'selected' : ''; ?>>🍽️ Dinner</option>
+                        <option value="Dessert" <?php echo (isset($_POST['category']) && $_POST['category'] == 'Dessert') ? 'selected' : ''; ?>>🍰 Dessert</option>
+                        <option value="Snack" <?php echo (isset($_POST['category']) && $_POST['category'] == 'Snack') ? 'selected' : ''; ?>>🍿 Snack</option>
+                        <option value="Beverage" <?php echo (isset($_POST['category']) && $_POST['category'] == 'Beverage') ? 'selected' : ''; ?>>🥤 Beverage</option>
+                    </select>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="prep_time" class="form-label">Prep Time (mins)</label>
+                        <input 
+                            type="number" 
+                            id="prep_time" 
+                            name="prep_time" 
+                            class="form-input"
+                            placeholder="15"
+                            min="0"
+                            value="<?php echo isset($_POST['prep_time']) ? htmlspecialchars($_POST['prep_time']) : ''; ?>"
+                        >
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="cook_time" class="form-label">Cook Time (mins)</label>
+                        <input 
+                            type="number" 
+                            id="cook_time" 
+                            name="cook_time" 
+                            class="form-input"
+                            placeholder="30"
+                            min="0"
+                            value="<?php echo isset($_POST['cook_time']) ? htmlspecialchars($_POST['cook_time']) : ''; ?>"
+                        >
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="servings" class="form-label">Servings</label>
+                        <input 
+                            type="number" 
+                            id="servings" 
+                            name="servings" 
+                            class="form-input"
+                            placeholder="4"
+                            min="1"
+                            value="<?php echo isset($_POST['servings']) ? htmlspecialchars($_POST['servings']) : ''; ?>"
+                        >
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recipe Details -->
+            <div class="form-section">
+                <h2 class="section-title">Recipe Details</h2>
+                
+                <div class="form-group">
+                    <label for="ingredients" class="form-label">Ingredients <span class="required">*</span></label>
+                    <textarea 
+                        id="ingredients" 
+                        name="ingredients" 
+                        class="form-textarea"
+                        placeholder="List each ingredient on a new line&#10;e.g.,&#10;2 cups flour&#10;1 cup sugar&#10;3 eggs"
+                        required
+                        style="min-height: 150px;"
+                    ><?php echo isset($_POST['ingredients']) ? htmlspecialchars($_POST['ingredients']) : ''; ?></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="instructions" class="form-label">Instructions <span class="required">*</span></label>
+                    <textarea 
+                        id="instructions" 
+                        name="instructions" 
+                        class="form-textarea"
+                        placeholder="Write step-by-step instructions&#10;e.g.,&#10;1. Preheat oven to 350°F&#10;2. Mix dry ingredients&#10;3. Add wet ingredients"
+                        required
+                        style="min-height: 200px;"
+                    ><?php echo isset($_POST['instructions']) ? htmlspecialchars($_POST['instructions']) : ''; ?></textarea>
+                </div>
+            </div>
+            
+            <!-- Recipe Image -->
+            <div class="form-section">
+                <h2 class="section-title">Recipe Image</h2>
+                
+                <div class="form-group">
+                    <label class="form-label">Upload Image (Optional)</label>
+                    <input 
+                        type="file" 
+                        id="image" 
+                        name="image" 
+                        class="form-input"
+                        accept="image/*"
+                    >
+                </div>
+            </div>
+            
+            <button type="submit" class="btn-submit">
+                ✨ Add Recipe
+            </button>
+            
+        </form>
+        
+    </div>
+    
+</div>
+
+<?php include 'includes/footer.php'; ?>

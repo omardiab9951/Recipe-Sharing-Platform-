@@ -1,0 +1,105 @@
+<?php include 'includes/header.php'; ?>
+<link rel="stylesheet" href="assets/css/home.css" />
+
+<div class="hero-section">
+  <h1 class="hero-title">🍳 Welcome to Recipe Sharing</h1>
+  <p class="hero-subtitle">
+    Discover and share amazing recipes from around the world
+  </p>
+  <?php if (isset($_SESSION['user_id'])): ?>
+  <a href="add-recipe.php" class="hero-button">➕ Share Your Recipe</a>
+  <?php else: ?>
+  <a href="register.php" class="hero-button">🚀 Get Started</a>
+  <?php endif; ?>
+</div>
+
+<div class="recipes-container">
+  <div class="section-header">
+    <h2 class="section-title">Latest Recipes</h2>
+    <p class="section-subtitle">Browse our collection of delicious recipes</p>
+  </div>
+
+  <?php if (count($recipes) >
+  0): ?>
+  <div class="recipes-grid">
+    <?php foreach ($recipes as $recipe): ?>
+    <div
+      class="recipe-card"
+      onclick="window.location.href='recipe-detail.php?id=<?php echo $recipe['id']; ?>'"
+    >
+      <div class="recipe-image-container">
+        <?php if (isset($recipe['image']) && $recipe['image']): ?>
+        <img
+          src="<?php echo htmlspecialchars($recipe['image']); ?>"
+          alt="<?php echo htmlspecialchars($recipe['title']); ?>"
+          class="recipe-image"
+        />
+        <?php else: ?>
+        <div class="no-image">
+          <?php echo getCategoryEmoji($recipe['category']); ?>
+        </div>
+        <?php endif; ?>
+      </div>
+
+      <div class="recipe-content">
+        <span class="recipe-category">
+          <?php echo getCategoryEmoji($recipe['category']) . ' ' . htmlspecialchars($recipe['category']); ?>
+        </span>
+
+        <h3 class="recipe-title">
+          <?php echo htmlspecialchars($recipe['title']); ?>
+        </h3>
+
+        <div class="recipe-meta">
+          <span class="recipe-author"
+            >👤
+            <?php echo htmlspecialchars($recipe['author_name']); ?></span
+          >
+          <?php 
+                            $prep = isset($recipe['prep_time']) ? $recipe['prep_time'] : 0;
+                            $cook = isset($recipe['cook_time']) ? $recipe['cook_time'] : 0;
+                            if ($prep >
+          0 || $cook > 0): ?>
+          <span
+            >⏱️
+            <?php echo ($prep + $cook); ?>
+            mins</span
+          >
+          <?php endif; ?>
+          <?php if (isset($recipe['servings']) && $recipe['servings'] >
+          0): ?>
+          <span
+            >🍽️
+            <?php echo $recipe['servings']; ?>
+            servings</span
+          >
+          <?php endif; ?>
+        </div>
+
+        <?php if (isset($recipe['description']) && !empty($recipe['description'])): ?>
+        <p class="recipe-description">
+          <?php echo htmlspecialchars($recipe['description']); ?>
+        </p>
+        <?php endif; ?>
+
+        <a
+          href="recipe-detail.php?id=<?php echo $recipe['id']; ?>"
+          class="btn-view"
+          >View Recipe</a
+        >
+      </div>
+    </div>
+    <?php endforeach; ?>
+  </div>
+  <?php else: ?>
+  <div class="no-recipes">
+    <div class="no-recipes-icon">🍳</div>
+    <p class="no-recipes-text">No recipes yet. Be the first to share!</p>
+    <?php if (isset($_SESSION['user_id'])): ?>
+    <a href="add-recipe.php" class="hero-button">Add First Recipe</a>
+    <?php endif; ?>
+  </div>
+  <?php endif; ?>
+</div>
+
+<?php include 'includes/footer.php'; ?>

@@ -1,0 +1,195 @@
+.register-page {
+    min-height: calc(100vh - 200px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    padding: 60px 20px;
+}
+
+.register-container {
+    width: 100%;
+    max-width: 500px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    padding: 50px 40px;
+}
+
+.register-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.register-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0 0 10px 0;
+}
+
+.register-subtitle {
+    color: #6b7280;
+    font-size: 16px;
+    margin: 0;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-label {
+    display: block;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 8px;
+    font-size: 15px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 14px 18px;
+    border: 2px solid #e5e7eb;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: all 0.3s;
+    box-sizing: border-box;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #d97706;
+    box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.1);
+}
+
+.form-input::placeholder {
+    color: #9ca3af;
+}
+
+.error-message {
+    background: #fee2e2;
+    border-left: 4px solid #ef4444;
+    color: #991b1b;
+    padding: 14px 16px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    font-size: 14px;
+}
+
+.success-message {
+    background: #d1fae5;
+    border-left: 4px solid #10b981;
+    color: #065f46;
+    padding: 14px 16px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    font-size: 14px;
+}
+
+.btn-register {
+    width: 100%;
+    padding: 16px;
+    background: #d97706;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 10px;
+}
+
+.btn-register:hover {
+    background: #b45309;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(217, 119, 6, 0.3);
+}
+
+.btn-register:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.login-link {
+    text-align: center;
+    margin-top: 25px;
+    color: #6b7280;
+    font-size: 15px;
+}
+
+.login-link a {
+    color: #3b82f6;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+.password-hint {
+    font-size: 13px;
+    color: #6b7280;
+    margin-top: 5px;
+}
+
+/* Password Strength Indicator Styles */
+#password-strength {
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+.password-weak {
+    color: #ef4444;
+    background: #fee2e2;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.password-medium {
+    color: #f59e0b;
+    background: #fef3c7;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.password-strong {
+    color: #10b981;
+    background: #d1fae5;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+/* Password Match Indicator Styles */
+#password-match {
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+.password-match-yes {
+    color: #10b981;
+    background: #d1fae5;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.password-match-no {
+    color: #ef4444;
+    background: #fee2e2;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+@media (max-width: 576px) {
+    .register-container {
+        padding: 40px 30px;
+    }
+    
+    .register-title {
+        font-size: 28px;
+    }
+}
