@@ -1,0 +1,117 @@
+<?php include 'includes/header.php'; ?>
+<link rel="stylesheet" href="assets/css/search.css" />
+
+<div class="search-page">
+  <div class="page-header">
+    <h1 class="page-title">🔍 Search Recipes</h1>
+    <p class="page-subtitle">Find your favorite recipes</p>
+  </div>
+
+  <!-- Search Form -->
+  <div class="search-form-container">
+    <form method="GET" action="search.php" class="search-form">
+      <input
+        type="text"
+        name="q"
+        class="search-input"
+        placeholder="Search recipes by title, ingredients, category..."
+        value="<?php echo htmlspecialchars($search_query); ?>"
+        required
+      />
+      <button type="submit" class="search-btn">🔍 Search</button>
+    </form>
+  </div>
+
+  <!-- Results -->
+  <?php if (!empty($search_query)): ?>
+  <div class="recipes-container">
+    <div class="results-header">
+      <h2 class="results-title">
+        Search Results for "<?php echo htmlspecialchars($search_query); ?>"
+      </h2>
+      <p class="results-count">
+        <?php echo count($recipes); ?>
+        recipe<?php echo count($recipes) != 1 ? 's' : ''; ?>
+        found
+      </p>
+    </div>
+
+    <?php if (count($recipes) >
+    0): ?>
+    <div class="recipes-grid">
+      <?php foreach ($recipes as $recipe): ?>
+      <div
+        class="recipe-card"
+        onclick="window.location.href='recipe-detail.php?id=<?php echo $recipe['id']; ?>'"
+      >
+        <div class="recipe-image-container">
+          <?php if (isset($recipe['image']) && $recipe['image']): ?>
+          <img
+            src="<?php echo htmlspecialchars($recipe['image']); ?>"
+            alt="<?php echo htmlspecialchars($recipe['title']); ?>"
+            class="recipe-image"
+          />
+          <?php else: ?>
+          <div class="no-image">
+            <?php echo getCategoryEmoji($recipe['category']); ?>
+          </div>
+          <?php endif; ?>
+        </div>
+
+        <div class="recipe-content">
+          <span class="recipe-category">
+            <?php echo getCategoryEmoji($recipe['category']) . ' ' . htmlspecialchars($recipe['category']); ?>
+          </span>
+
+          <h3 class="recipe-title">
+            <?php echo htmlspecialchars($recipe['title']); ?>
+          </h3>
+
+          <div class="recipe-meta">
+            <span class="recipe-author"
+              >👤
+              <?php echo htmlspecialchars($recipe['author_name']); ?></span
+            >
+            <?php 
+                                    $prep = isset($recipe['prep_time']) ? $recipe['prep_time'] : 0;
+                                    $cook = isset($recipe['cook_time']) ? $recipe['cook_time'] : 0;
+                                    if ($prep >
+            0 || $cook > 0): ?>
+            <span
+              >⏱️
+              <?php echo ($prep + $cook); ?>
+              mins</span
+            >
+            <?php endif; ?>
+          </div>
+
+          <?php if (isset($recipe['description']) && !empty($recipe['description'])): ?>
+          <p class="recipe-description">
+            <?php echo htmlspecialchars($recipe['description']); ?>
+          </p>
+          <?php endif; ?>
+
+          <a
+            href="recipe-detail.php?id=<?php echo $recipe['id']; ?>"
+            class="btn-view"
+            >View Recipe</a
+          >
+        </div>
+      </div>
+      <?php endforeach; ?>
+    </div>
+    <?php else: ?>
+    <div class="no-recipes">
+      <div class="no-recipes-icon">😕</div>
+      <p class="no-recipes-text">No recipes found matching your search</p>
+      <p class="no-recipes-hint">
+        Try different keywords or browse all recipes
+      </p>
+      <a href="browse.php" class="btn-browse">Browse All Recipes</a>
+    </div>
+    <?php endif; ?>
+  </div>
+  <?php endif; ?>
+</div>
+
+<?php include 'includes/footer.php'; ?>
