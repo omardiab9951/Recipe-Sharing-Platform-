@@ -130,7 +130,10 @@ This is a group project developed collaboratively.
 | Contributor | Role |
 |---|---|
 | **Omar Diab** | Full Stack — Frontend, Backend & Database |
-| *Team Members* | Design · Content · Testing |
+| **Abdekreem Hossam** | Frontend |
+| **Omar Ahmed** | Frontend |
+| **Mostafe ElSherif** | Backend & Database |
+
 
 ---
 
